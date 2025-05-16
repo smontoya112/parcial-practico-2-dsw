@@ -1,0 +1,26 @@
+<div *ngIf="loading" class="text-center py-3">
+  <p>Cargando lista de aerolíneas...</p>
+</div>
+
+<div *ngIf="error" class="alert alert-danger text-center">
+  <p>Error al cargar las aerolíneas</p>
+  <button class="btn btn-primary" (click)="getAirlines()">Reintentar</button>
+</div>
+
+<div *ngIf="!loading && !error">
+  <h2 class="text-center mb-4">Aerolíneas</h2>
+  
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let airline of airlines" class="col-6 col-md-4 col-lg-3 mb-3 p-1">
+        <a [routerLink]="['/airline', airline.id]" class="text-decoration-none">
+          <div class="p-3 text-center rounded" 
+               [style.background]="airline.identityColor"
+               style="height: 100px; display: flex; align-items: center; justify-content: center;">
+            <span class="text-white fw-bold">{{airline.airlineName}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

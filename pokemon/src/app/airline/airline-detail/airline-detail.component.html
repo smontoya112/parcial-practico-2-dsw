@@ -1,0 +1,26 @@
+<div *ngIf="loading">
+  <p>Cargando detalles de la aerolínea...</p>
+</div>
+
+<div *ngIf="error">
+  <p>Error al cargar los detalles</p>
+  <button (click)="goBack()">Volver</button>
+</div>
+
+<ng-container *ngIf="airline && !loading">
+  <div>
+    <button (click)="goBack()">← Volver al listado</button>
+    
+    <h2>{{airline.airlineName}}</h2>
+    
+    <div>
+      <p><strong>País:</strong> {{airline.country}}</p>
+      <p><strong>Ciudad:</strong> {{airline.city}}</p>
+      <p><strong>Eslogan:</strong> "{{airline.slogan}}"</p>
+    </div>
+
+    <button *ngIf="airline.id" (click)="getFlights(airline.id)">
+      Ver lista de vuelos
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,22 @@
+<div *ngIf="loading">
+  <p>Cargando lista de vuelos...</p>
+</div>
+
+<div *ngIf="error">
+  <p>Error al cargar los vuelos</p>
+  <button (click)="goBack()">Volver</button>
+</div>
+
+<div *ngIf="!loading && !error">
+  <button (click)="goBack()">← Volver</button>
+  
+  <h2>Vuelos de {{airline?.airlineName || 'la aerolínea'}}</h2>
+  
+  <div *ngFor="let flight of flights" style="margin: 10px 0; padding: 10px; border: 1px solid #eee;">
+    <h3>Vuelo #{{flight.id}}</h3>
+    <p><strong>Origen:</strong> {{flight.departureAirport}} ({{flight.departureTime}})</p>
+    <p><strong>Destino:</strong> {{flight.arrivalAirport}} ({{flight.arrivalTime}})</p>
+    <p><strong>Duración:</strong> {{flight.duration}}</p>
+    <p><strong>Precio:</strong> ${{flight.price}}</p>
+  </div>
+</div>
